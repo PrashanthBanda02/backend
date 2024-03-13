@@ -159,6 +159,23 @@ const Users = mongoose.model("Users",{
     },
 })
 
+const Admins = mongoose.model("Admins",{
+    name: {
+        type: String,
+    },
+    email: {
+        type: String,
+        unique: true,
+    },
+    password: {
+        type: String,
+    },
+    date: {
+        type: Date,
+        default: Date.now,
+    },
+})
+
 //Creating an endpoint to create user
 
 app.post('/signup',async(req,res)=>{
@@ -194,8 +211,33 @@ app.post('/signup',async(req,res)=>{
 
 
 //Creating an endpoint for user login
-app.post('/login', async(req,res)=>{
-    let user = await Users.findOne({email: req.body.email})
+app.post('/admin/register',async(req,res)=>{
+    let check = await Admins.findOne({email: req.body.email});
+    if(check){
+        return res.status(400).json({success:false,errors: 'existing user found with same email'})
+    }
+
+     let user = new Admins({
+        name: req.body.username,
+        email:req.body.email,
+        password:req.body.password,
+     })
+
+     await user.save();
+     
+     const data = {
+        user: {
+            id: user.id
+        }
+     }
+
+     const token = jwt.sign(data,'secret_token');
+     res.json({success: true,token})
+
+})
+
+app.post('/admin/login', async(req,res)=>{
+    let user = await Admins.findOne({email: req.body.email})
 
     if(user){
         const passCompare = req.body.password === user.password
