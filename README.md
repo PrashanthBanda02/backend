@@ -1,4 +1,4 @@
-## Project Name: Backend
+## Project Name: UpTrendZ-E-Commerce application
 
 ### Description:
 This project serves as the backend for an e-commerce application. It provides API endpoints for user registration, authentication, product management, and cart functionality.
