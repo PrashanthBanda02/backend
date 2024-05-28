@@ -9,13 +9,16 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cors = require('cors')
 const path = require("path")
-const multer = require("multer")
+const multer = require("multer");
+const { error } = require('console');
 
 app.use(express.json());
 app.use(cors());
 
 // Database connection with mongoDB
 mongoose.connect("mongodb+srv://Prashanth:Prashanth0509@cluster0.jtydaqp.mongodb.net/E-commerce")
+    .then(console.log("mongoDB connected"))
+    .catch((error)=> console.log(error))
 
 // API creation 
 
