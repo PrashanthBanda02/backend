@@ -15,7 +15,7 @@ This project serves as the backend for an e-commerce application. It provides AP
 ### Usage:
 - Ensure MongoDB is running locally.
 - Use Postman or similar tools to interact with the API endpoints.
-- Register a new user: `POST /register`
+- Register a new user: `POST /signup`
 - Log in as a user: `POST /login`
 - Add a product: `POST /addproduct`
 - Remove a product: `POST /removeproduct`
@@ -29,7 +29,7 @@ This project serves as the backend for an e-commerce application. It provides AP
 ### API Endpoints:
 
 #### Register a new user
-POST /register
+POST /signup
 
 Request Body:
 
